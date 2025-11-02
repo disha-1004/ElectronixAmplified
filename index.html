@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronix Amplified</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #f3e7ff 0%, #e0f4ff 50%, #ffe0f0 100%);
+            color: #1a1a1a;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a0b2e 100%);
+            color: #f0f0f0;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .light-mode .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .navbar {
+            background: rgba(26, 26, 46, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .theme-toggle {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .light-mode .theme-toggle {
+            background: #e5e7eb;
+        }
+
+        .dark-mode .theme-toggle {
+            background: #374151;
+        }
+
+        .home-section {
+            padding: 8rem 2rem 5rem;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: bold;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #06b6d4, #3b82f6);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            opacity: 0.8;
+            cursor: default;
+        }
+
+        .btn-secondary:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .semester-section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .subject-card {
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 2px solid transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            border-color: #8b5cf6;
+        }
+
+        .light-mode .subject-card {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .subject-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark-mode .subject-card {
+            background: #1f2937;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .subject-card:hover {
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .subject-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .card-btn {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            display: block;
+        }
+
+        .card-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .card-btn:active {
+            transform: scale(0.98);
+        }
+
+        .card-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .btn-notes {
+            background: linear-gradient(90deg, #06b6d4, #3b82f6);
+        }
+
+        .btn-pyq {
+            background: linear-gradient(90deg, #f97316, #ec4899);
+        }
+
+        .coming-soon {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem;
+            border-radius: 2rem;
+            text-align: center;
+        }
+
+        .light-mode .coming-soon {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .dark-mode .coming-soon {
+            background: rgba(31, 41, 55, 0.7);
+        }
+
+        .team-section {
+            padding: 5rem 2rem;
+        }
+
+        .light-mode .team-section {
+            background: linear-gradient(90deg, #f3e8ff, #fce7f3);
+        }
+
+        .dark-mode .team-section {
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .team-card {
+            padding: 2rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .light-mode .team-card {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .team-card {
+            background: #1f2937;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+
+        .team-tagline {
+            text-align: center;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-weight: bold;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .footer {
+            padding: 2rem;
+            text-align: center;
+            background: #111827;
+            color: #9ca3af;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .home-section {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .semester-section {
+                padding: 3rem 1rem;
+            }
+
+            .team-section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar">
+        <div class="logo">
+            <span>⚡</span>
+            <span>Electronix Amplified</span>
+        </div>
+        <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">🌙</button>
+    </nav>
+
+    <section class="home-section">
+        <h1 class="main-title">Electronix Amplified</h1>
+        <p class="subtitle">Your notes amplified for success</p>
+        <div class="button-container">
+            <button class="btn btn-primary" id="sem1Btn">1st Semester</button>
+            <button class="btn btn-secondary">2nd Semester (Coming Soon)</button>
+        </div>
+    </section>
+
+    <section id="first-sem" class="semester-section">
+        <h2 class="section-title">1st Semester</h2>
+        <div class="cards-grid" id="subjects-container"></div>
+    </section>
+
+    <section id="second-sem" class="semester-section">
+        <div class="coming-soon">
+            <h2 style="margin-bottom: 1rem; font-size: 2rem;">Coming Soon</h2>
+            <p style="font-size: 1.1rem;">Notes and PYQs for 2nd Semester will be added soon</p>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2 class="section-title">Meet The Team</h2>
+        <div class="team-grid" id="team-container"></div>
+        <p class="team-tagline">We have got your back so you do not just survive ECE—you AMPLIFY it!</p>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Electronix Amplified • Made with ❤️ by Team ElectronixAmplified </p>
+        <p>Contact: teamelectronixamplified@gmail.com</p>
+    </footer>
+
+    <script>
+        const subjects = [
+            { 
+                title: 'Applied Mathematics', 
+                notesLink: 'https://drive.google.com/drive/folders/1NWTLg6RB4nTeWqB0Gz3iphGbGgDnMXGv', 
+                pyqLink: 'https://drive.google.com/drive/folders/1x2yJSG7d_UklJ_bw0PeuxI8YemUxeMKJ',
+                notesAvailable: true,
+                pyqAvailable: true
+            },
+            { 
+                title: 'Fundamentals of Electric Science', 
+                notesLink: 'https://drive.google.com/drive/folders/13ThVn-YXS0hRvvGnVud8VdelutXlPQtu', 
+                pyqLink: 'https://drive.google.com/drive/folders/1S_g07w7w1cfH9aDCs4aFcvrGAtef3QFt',
+                notesAvailable: true,
+                pyqAvailable: true
+            },
+            { 
+                title: 'Electronic Workshop', 
+                notesLink: 'https://drive.google.com/drive/folders/1cIPk6afMYi7il4ONtGd5wJ9R8u2mAwVC', 
+                pyqLink: 'https://drive.google.com/drive/folders/1lx_QjUV3VbVJbtpMBPohZMiJhT1YxeFN',
+                notesAvailable: true,
+                pyqAvailable: true
+            },
+            { 
+                title: 'Programming Fundamentals', 
+                notesLink: 'https://drive.google.com/drive/folders/1yIUg1m8gCzSpYKH0G4rkVb_CT9eV69tO', 
+                pyqLink: 'https://drive.google.com/drive/folders/1vqrjgX0bUpZz_1SmcZjFOE5cEfRs2kz3',
+                notesAvailable: true,
+                pyqAvailable: true
+            },
+            { 
+                title: 'Signals and Systems', 
+                notesLink: 'https://drive.google.com/drive/folders/1_uUkC72qiGfr8mHqi7UnIJzN0TeB59fj', 
+                pyqLink: 'https://drive.google.com/drive/folders/1agWNZpPT608HaNjVHCuoMux3E3wo6I_T',
+                notesAvailable: true,
+                pyqAvailable: true
+            },
+            { 
+                title: 'Communication Skills', 
+                notesLink: 'https://drive.google.com/drive/folders/1WcW2kt-Ddys7bDTyDDbE1KWhJxiUrccL', 
+                pyqLink: 'https://drive.google.com/drive/folders/1OL7sfKTtWWstrU8jWenP7riGN4PCpdbR',
+                notesAvailable: true,
+                pyqAvailable: true
+            }
+        ];
+
+        const team = [
+            { name: 'Disha Sharma', role: 'Founder and Director', emoji: '👩' },
+            { name: 'Ridhi Bajaj', role: 'Co-founder', emoji: '⚡' },
+            { name: 'Aavanya Raj', role: 'HR Lead', emoji: '💼' },
+            { name: 'Anuradha Bharti', role: 'Tech Lead', emoji: '💡' }
+        ];
+
+        // Theme toggle functionality
+        const themeBtn = document.getElementById('themeBtn');
+        const body = document.body;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light-mode';
+        body.className = savedTheme;
+        themeBtn.innerHTML = savedTheme === 'light-mode' ? '🌙' : '☀️';
+
+        themeBtn.addEventListener('click', function() {
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                themeBtn.innerHTML = '☀️';
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                themeBtn.innerHTML = '🌙';
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+
+        // Smooth scroll to first semester
+        document.getElementById('sem1Btn').addEventListener('click', function() {
+            document.getElementById('first-sem').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // Render subjects
+        function renderSubjects() {
+            const container = document.getElementById('subjects-container');
+            let html = '';
+            
+            subjects.forEach(subject => {
+                html += `
+                    <div class="subject-card">
+                        <h3 class="subject-title">${subject.title}</h3>
+                        <div class="card-buttons">
+                            <a href="${subject.notesLink}" 
+                               class="card-btn btn-notes ${!subject.notesAvailable ? 'disabled' : ''}"
+                               ${!subject.notesAvailable ? 'onclick="return false;"' : ''}
+                               ${subject.notesAvailable ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+                                ${subject.notesAvailable ? '📚 Access Notes' : 'Notes (Coming Soon)'}
+                            </a>
+                            <a href="${subject.pyqLink}" 
+                               class="card-btn btn-pyq ${!subject.pyqAvailable ? 'disabled' : ''}"
+                               ${!subject.pyqAvailable ? 'onclick="return false;"' : ''}
+                               ${subject.pyqAvailable ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+                                ${subject.pyqAvailable ? '📝 Access PYQs' : 'PYQs (Coming Soon)'}
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Render team
+        function renderTeam() {
+            const container = document.getElementById('team-container');
+            let html = '';
+            
+            team.forEach(member => {
+                html += `
+                    <div class="team-card">
+                        <div class="team-emoji">${member.emoji}</div>
+                        <h3 class="team-name">${member.name}</h3>
+                        <p class="team-role">${member.role}</p>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Initialize
+        renderSubjects();
+        renderTeam();
+    </script>
+</body>
+</html>
