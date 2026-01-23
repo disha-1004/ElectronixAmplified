@@ -286,132 +286,72 @@
     </footer>
 
     <script>
-        const subjectsSem1 = [
-            { 
-                title: 'Applied Mathematics', 
-                notesLink: 'https://drive.google.com/drive/folders/1NWTLg6RB4nTeWqB0Gz3iphGbGgDnMXGv', 
-                pyqLink: 'https://drive.google.com/drive/folders/1x2yJSG7d_UklJ_bw0PeuxI8YemUxeMKJ',
-                notesAvailable: true, pyqAvailable: true
-            },
-            { 
-                title: 'Fundamentals of Electric Science', 
-                notesLink: 'https://drive.google.com/drive/folders/13ThVn-YXS0hRvvGnVud8VdelutXlPQtu', 
-                pyqLink: 'https://drive.google.com/drive/folders/1S_g07w7w1cfH9aDCs4aFcvrGAtef3QFt',
-                notesAvailable: true, pyqAvailable: true
-            },
-            { 
-                title: 'Electronic Workshop', 
-                notesLink: 'https://drive.google.com/drive/folders/1cIPk6afMYi7il4ONtGd5wJ9R8u2mAwVC', 
-                pyqLink: 'https://drive.google.com/drive/folders/1lx_QjUV3VbVJbtpMBPohZMiJhT1YxeFN',
-                notesAvailable: true, pyqAvailable: true
-            },
-            { 
-                title: 'Programming Fundamentals', 
-                notesLink: 'https://drive.google.com/drive/folders/1yIUg1m8gCzSpYKH0G4rkVb_CT9eV69tO', 
-                pyqLink: 'https://drive.google.com/drive/folders/1vqrjgX0bUpZz_1SmcZjFOE5cEfRs2kz3',
-                notesAvailable: true, pyqAvailable: true
-            },
-            { 
-                title: 'Signals and Systems', 
-                notesLink: 'https://drive.google.com/drive/folders/1_uUkC72qiGfr8mHqi7UnIJzN0TeB59fj', 
-                pyqLink: 'https://drive.google.com/drive/folders/1agWNZpPT608HaNjVHCuoMux3E3wo6I_T',
-                notesAvailable: true, pyqAvailable: true
-            },
-            { 
-                title: 'Communication Skills', 
-                notesLink: 'https://drive.google.com/drive/folders/1WcW2kt-Ddys7bDTyDDbE1KWhJxiUrccL', 
-                pyqLink: 'https://drive.google.com/drive/folders/1OL7sfKTtWWstrU8jWenP7riGN4PCpdbR',
-                notesAvailable: true, pyqAvailable: true
-            }
-        ];
+    const subjectsSem1 = [
+        { title: 'Applied Mathematics', notesLink: 'https://drive.google.com/drive/folders/1NWTLg6RB4nTeWqB0Gz3iphGbGgDnMXGv', pyqLink: 'https://drive.google.com/drive/folders/1x2yJSG7d_UklJ_bw0PeuxI8YemUxeMKJ', notesAvailable: true, pyqAvailable: true },
+        { title: 'Fundamentals of Electric Science', notesLink: 'https://drive.google.com/drive/folders/13ThVn-YXS0hRvvGnVud8VdelutXlPQtu', pyqLink: 'https://drive.google.com/drive/folders/1S_g07w7w1cfH9aDCs4aFcvrGAtef3QFt', notesAvailable: true, pyqAvailable: true },
+        { title: 'Electronic Workshop', notesLink: 'https://drive.google.com/drive/folders/1cIPk6afMYi7il4ONtGd5wJ9R8u2mAwVC', pyqLink: 'https://drive.google.com/drive/folders/1lx_QjUV3VbVJbtpMBPohZMiJhT1YxeFN', notesAvailable: true, pyqAvailable: true },
+        { title: 'Programming Fundamentals', notesLink: 'https://drive.google.com/drive/folders/1yIUg1m8gCzSpYKH0G4rkVb_CT9eV69tO', pyqLink: 'https://drive.google.com/drive/folders/1vqrjgX0bUpZz_1SmcZjFOE5cEfRs2kz3', notesAvailable: true, pyqAvailable: true },
+        { title: 'Signals and Systems', notesLink: 'https://drive.google.com/drive/folders/1_uUkC72qiGfr8mHqi7UnIJzN0TeB59fj', pyqLink: 'https://drive.google.com/drive/folders/1agWNZpPT608HaNjVHCuoMux3E3wo6I_T', notesAvailable: true, pyqAvailable: true },
+        { title: 'Communication Skills', notesLink: 'https://drive.google.com/drive/folders/1WcW2kt-Ddys7bDTyDDbE1KWhJxiUrccL', pyqLink: 'https://drive.google.com/drive/folders/1OL7sfKTtWWstrU8jWenP7riGN4PCpdbR', notesAvailable: true, pyqAvailable: true }
+    ];
 
-        // ADD NEW SUBJECTS FOR SEMESTER 2 HERE
-        const subjectsSem2 = [
-            { 
-                title: 'Applied Physics', 
-                notesLink: 'https://drive.google.com/drive/folders/1z9Tb6ui7pmsI3vhz16yRQrDC93ylu7_C?usp=drive_link', 
-                pyqLink: 'https://drive.google.com/drive/folders/1H295niKUym4gsuXJyjliGf06ehTBRbWy?usp=drive_link',
-                notesAvailable: true, pyqAvailable: true
-            },
-            { 
-                title: 'Soft Skills and Development', 
-                notesLink: 'https://drive.google.com/drive/folders/1mysrjs6LpW-e_4nwv476exoOpuCDR4d_?usp=drive_link', 
-                pyqLink: 'https://drive.google.com/drive/folders/1fQ9upi7xvMQB6IcwgGvJUDsMGpikosRN?usp=drive_link',
-                notesAvailable: true, pyqAvailable: true
-            },
-            { 
-                title: 'Network Analysis & Synthesis', 
-                notesLink: 'https://drive.google.com/drive/folders/1nZkuP-6zLCoG5eeNFnDeFbj3OOGDQddT?usp=drive_link', 
-                pyqLink: 'https://drive.google.com/drive/folders/1LOTUxBZ0CZ6dQqGFJzPYjJt2s8a2harR?usp=drive_link',
-                notesAvailable: true, pyqAvailable: true
-            },
-            { 
-                title: 'IT Workshop', 
-                notesLink: 'https://drive.google.com/drive/folders/1A6Ecceu1rX3WDjkW1VJZ3RytoyWs-m73?usp=drive_link', 
-                pyqLink: 'https://drive.google.com/drive/folders/1jlocnHDiUUfXDr21ehXmKvSSvLmXbdYf?usp=drive_link',
-                notesAvailable: true, pyqAvailable: true
-            },
-            { 
-                title: 'Introduction To Data Science', 
-                notesLink: 'https://drive.google.com/drive/folders/1UWqnsHljCcXKQ9Mso25coeQdaiJ-3026?usp=drive_link', 
-                pyqLink: 'https://drive.google.com/drive/folders/1_vUrCq_ZlljoEOSIsDmvHSVzK-kmFs7P?usp=drive_link',
-                notesAvailable: true, pyqAvailable: true
-            },
-            { 
-                title: 'Environmental Science', 
-                notesLink: 'https://drive.google.com/drive/folders/1fVXRIQsI8OjdT0N_MZZDBVFrA2xzIXl4?usp=drive_link', 
-                pyqLink: 'https://drive.google.com/drive/folders/175hfQHxbd0ml3UbVdjWCQkEkMiRle8CF?usp=drive_link',
-                notesAvailable: true, pyqAvailable: true
-            }
-        ];
+    const subjectsSem2 = [
+        { title: 'Applied Physics', notesLink: 'https://drive.google.com/drive/folders/1z9Tb6ui7pmsI3vhz16yRQrDC93ylu7_C?usp=drive_link', pyqLink: 'https://drive.google.com/drive/folders/1H295niKUym4gsuXJyjliGf06ehTBRbWy?usp=drive_link', notesAvailable: true, pyqAvailable: true },
+        { title: 'Soft Skills and Development', notesLink: 'https://drive.google.com/drive/folders/1mysrjs6LpW-e_4nwv476exoOpuCDR4d_?usp=drive_link', pyqLink: 'https://drive.google.com/drive/folders/1fQ9upi7xvMQB6IcwgGvJUDsMGpikosRN?usp=drive_link', notesAvailable: true, pyqAvailable: true },
+        { title: 'Network Analysis & Synthesis', notesLink: 'https://drive.google.com/drive/folders/1nZkuP-6zLCoG5eeNFnDeFbj3OOGDQddT?usp=drive_link', pyqLink: 'https://drive.google.com/drive/folders/1LOTUxBZ0CZ6dQqGFJzPYjJt2s8a2harR?usp=drive_link', notesAvailable: true, pyqAvailable: true },
+        { title: 'IT Workshop', notesLink: 'https://drive.google.com/drive/folders/1A6Ecceu1rX3WDjkW1VJZ3RytoyWs-m73?usp=drive_link', pyqLink: 'https://drive.google.com/drive/folders/1jlocnHDiUUfXDr21ehXmKvSSvLmXbdYf?usp=drive_link', notesAvailable: true, pyqAvailable: true },
+        { title: 'Introduction To Data Science', notesLink: 'https://drive.google.com/drive/folders/1UWqnsHljCcXKQ9Mso25coeQdaiJ-3026?usp=drive_link', pyqLink: 'https://drive.google.com/drive/folders/1_vUrCq_ZlljoEOSIsDmvHSVzK-kmFs7P?usp=drive_link', notesAvailable: true, pyqAvailable: true },
+        { title: 'Environmental Science', notesLink: 'https://drive.google.com/drive/folders/1fVXRIQsI8OjdT0N_MZZDBVFrA2xzIXl4?usp=drive_link', pyqLink: 'https://drive.google.com/drive/folders/175hfQHxbd0ml3UbVdjWCQkEkMiRle8CF?usp=drive_link', notesAvailable: true, pyqAvailable: true }
+    ];
 
-        const team = [
-            { name: 'Disha Sharma', role: 'Founder and Director', emoji: '👩' },
-            { name: 'Ridhi Bajaj', role: 'Co-founder', emoji: '⚡' },
-            { name: 'Aavanya Raj', role: 'HR Lead', emoji: '💼' },
-            { name: 'Anuradha Bharti', role: 'Tech Lead', emoji: '💡' }
-        ];
+    const team = [
+        { name: 'Disha Sharma', role: 'Founder and Director', emoji: '👩' },
+        { name: 'Ridhi Bajaj', role: 'Co-founder', emoji: '⚡' },
+        { name: 'Aavanya Raj', role: 'HR Lead', emoji: '💼' },
+        { name: 'Anuradha Bharti', role: 'Tech Lead', emoji: '💡' }
+    ];
 
-        // Theme logic
-        const themeBtn = document.getElementById('themeBtn');
-        const body = document.body;
-        themeBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            body.classList.toggle('light-mode');
-            themeBtn.innerHTML = body.classList.contains('dark-mode') ? '☀️' : '🌙';
-        });
+    // Theme logic
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.onclick = () => {
+        document.body.classList.toggle('dark-mode');
+        document.body.classList.toggle('light-mode');
+        themeBtn.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    };
 
-        // Navigation logic
-        document.getElementById('sem1Btn').onclick = () => document.getElementById('first-sem').scrollIntoView({ behavior: 'smooth' });
-        document.getElementById('sem2Btn').onclick = () => document.getElementById('second-sem').scrollIntoView({ behavior: 'smooth' });
+    // Navigation logic
+    document.getElementById('sem1Btn').onclick = () => document.getElementById('first-sem').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('sem2Btn').onclick = () => document.getElementById('second-sem').scrollIntoView({ behavior: 'smooth' });
 
-        // Generic Render Function
-        function renderSubjectCards(data, containerId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = data.map(subject => `
-                <div class="subject-card">
-                    <h3 class="subject-title">${subject.title}</h3>
-                    <div class="card-buttons">
-                        <a href="${subject.notesLink}" class="card-btn btn-notes" target="_blank">📚 Access Notes</a>
-                        <a href="${subject.pyqLink}" class="card-btn btn-pyq" target="_blank">📝 Access PYQs</a>
-                    </div>
+    function renderSubjectCards(data, containerId) {
+        const container = document.getElementById(containerId);
+        if(!container) return;
+        container.innerHTML = data.map(subject => `
+            <div class="subject-card">
+                <h3 class="subject-title">${subject.title}</h3>
+                <div class="card-buttons">
+                    <a href="${subject.notesLink}" class="card-btn btn-notes" target="_blank">📚 Access Notes</a>
+                    <a href="${subject.pyqLink}" class="card-btn btn-pyq" target="_blank">📝 Access PYQs</a>
                 </div>
-            `).join('');
-        }
+            </div>
+        `).join('');
+    }
 
-        function renderTeam() {
-            document.getElementById('team-container').innerHTML = team.map(m => `
-                <div class="team-card">
-                    <div class="team-emoji">${m.emoji}</div>
-                    <h3 class="team-name">${m.name}</h3>
-                    <p class="team-role">${m.role}</p>
-                </div>
-            `).join('');
-        }
+    function renderTeam() {
+        const container = document.getElementById('team-container');
+        if(!container) return;
+        container.innerHTML = team.map(m => `
+            <div class="team-card">
+                <div class="team-emoji">${m.emoji}</div>
+                <h3 class="team-name">${m.name}</h3>
+                <p class="team-role">${m.role}</p>
+            </div>
+        `).join('');
+    }
 
-        renderSubjectCards(subjectsSem1, 'subjects-container-1');
-        renderSubjectCards(subjectsSem2, 'subjects-container-2');
-        renderTeam();
-    </script>
+    renderSubjectCards(subjectsSem1, 'subjects-container-1');
+    renderSubjectCards(subjectsSem2, 'subjects-container-2');
+    renderTeam();
+</script>
 </body>
 </html>
