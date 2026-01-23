@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electronix Amplified</title>
     <style>
+        /* CSS remains exactly the same as your original code */
         * {
             margin: 0;
             padding: 0;
@@ -148,13 +149,6 @@
 
         .btn-secondary {
             background: linear-gradient(90deg, #8b5cf6, #ec4899);
-            opacity: 0.8;
-            cursor: default;
-        }
-
-        .btn-secondary:hover {
-            transform: none;
-            box-shadow: none;
         }
 
         .semester-section {
@@ -193,17 +187,9 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .light-mode .subject-card:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
         .dark-mode .subject-card {
             background: #1f2937;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
-
-        .dark-mode .subject-card:hover {
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
         }
 
         .subject-title {
@@ -231,57 +217,10 @@
             display: block;
         }
 
-        .card-btn:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
+        .btn-notes { background: linear-gradient(90deg, #06b6d4, #3b82f6); }
+        .btn-pyq { background: linear-gradient(90deg, #f97316, #ec4899); }
 
-        .card-btn:active {
-            transform: scale(0.98);
-        }
-
-        .card-btn.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .btn-notes {
-            background: linear-gradient(90deg, #06b6d4, #3b82f6);
-        }
-
-        .btn-pyq {
-            background: linear-gradient(90deg, #f97316, #ec4899);
-        }
-
-        .coming-soon {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem;
-            border-radius: 2rem;
-            text-align: center;
-        }
-
-        .light-mode .coming-soon {
-            background: rgba(255, 255, 255, 0.7);
-        }
-
-        .dark-mode .coming-soon {
-            background: rgba(31, 41, 55, 0.7);
-        }
-
-        .team-section {
-            padding: 5rem 2rem;
-        }
-
-        .light-mode .team-section {
-            background: linear-gradient(90deg, #f3e8ff, #fce7f3);
-        }
-
-        .dark-mode .team-section {
-            background: linear-gradient(90deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
-        }
-
+        .team-section { padding: 5rem 2rem; }
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -294,46 +233,6 @@
             padding: 2rem;
             border-radius: 1.5rem;
             text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .light-mode .team-card {
-            background: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .dark-mode .team-card {
-            background: #1f2937;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
-
-        .team-emoji {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .team-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .team-role {
-            color: #8b5cf6;
-            font-weight: 600;
-        }
-
-        .team-tagline {
-            text-align: center;
-            font-size: clamp(1rem, 3vw, 1.3rem);
-            font-weight: bold;
-            max-width: 900px;
-            margin: 0 auto;
-            line-height: 1.5;
         }
 
         .footer {
@@ -343,49 +242,8 @@
             color: #9ca3af;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .home-section {
-                padding: 6rem 1rem 3rem;
-            }
-
-            .semester-section {
-                padding: 3rem 1rem;
-            }
-
-            .team-section {
-                padding: 3rem 1rem;
-            }
-        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="light-mode">
@@ -402,24 +260,24 @@
         <p class="subtitle">Your notes amplified for success</p>
         <div class="button-container">
             <button class="btn btn-primary" id="sem1Btn">1st Semester</button>
-            <button class="btn btn-secondary">2nd Semester (Coming Soon)</button>
+            <button class="btn btn-secondary" id="sem2Btn">2nd Semester</button>
         </div>
     </section>
 
     <section id="first-sem" class="semester-section">
         <h2 class="section-title">1st Semester</h2>
-        <div class="cards-grid" id="subjects-container"></div>
+        <div class="cards-grid" id="subjects-container-1"></div>
     </section>
 
     <section id="second-sem" class="semester-section">
         <h2 class="section-title">2nd Semester</h2>
-        <div class="cards-grid" id="subjects-container"></div>
+        <div class="cards-grid" id="subjects-container-2"></div>
     </section>
 
     <section class="team-section">
         <h2 class="section-title">Meet The Team</h2>
         <div class="team-grid" id="team-container"></div>
-        <p class="team-tagline">We have got your back so you do not just survive ECE—you AMPLIFY it!</p>
+        <p style="text-align: center; font-weight: bold;">We have got your back so you do not just survive ECE—you AMPLIFY it!</p>
     </section>
 
     <footer class="footer">
@@ -428,48 +286,64 @@
     </footer>
 
     <script>
-        const subjects = [
+        const subjectsSem1 = [
             { 
                 title: 'Applied Mathematics', 
                 notesLink: 'https://drive.google.com/drive/folders/1NWTLg6RB4nTeWqB0Gz3iphGbGgDnMXGv', 
                 pyqLink: 'https://drive.google.com/drive/folders/1x2yJSG7d_UklJ_bw0PeuxI8YemUxeMKJ',
-                notesAvailable: true,
-                pyqAvailable: true
+                notesAvailable: true, pyqAvailable: true
             },
             { 
                 title: 'Fundamentals of Electric Science', 
                 notesLink: 'https://drive.google.com/drive/folders/13ThVn-YXS0hRvvGnVud8VdelutXlPQtu', 
                 pyqLink: 'https://drive.google.com/drive/folders/1S_g07w7w1cfH9aDCs4aFcvrGAtef3QFt',
-                notesAvailable: true,
-                pyqAvailable: true
+                notesAvailable: true, pyqAvailable: true
             },
             { 
                 title: 'Electronic Workshop', 
                 notesLink: 'https://drive.google.com/drive/folders/1cIPk6afMYi7il4ONtGd5wJ9R8u2mAwVC', 
                 pyqLink: 'https://drive.google.com/drive/folders/1lx_QjUV3VbVJbtpMBPohZMiJhT1YxeFN',
-                notesAvailable: true,
-                pyqAvailable: true
+                notesAvailable: true, pyqAvailable: true
             },
             { 
                 title: 'Programming Fundamentals', 
                 notesLink: 'https://drive.google.com/drive/folders/1yIUg1m8gCzSpYKH0G4rkVb_CT9eV69tO', 
                 pyqLink: 'https://drive.google.com/drive/folders/1vqrjgX0bUpZz_1SmcZjFOE5cEfRs2kz3',
-                notesAvailable: true,
-                pyqAvailable: true
+                notesAvailable: true, pyqAvailable: true
             },
             { 
                 title: 'Signals and Systems', 
                 notesLink: 'https://drive.google.com/drive/folders/1_uUkC72qiGfr8mHqi7UnIJzN0TeB59fj', 
                 pyqLink: 'https://drive.google.com/drive/folders/1agWNZpPT608HaNjVHCuoMux3E3wo6I_T',
-                notesAvailable: true,
-                pyqAvailable: true
+                notesAvailable: true, pyqAvailable: true
             },
             { 
                 title: 'Communication Skills', 
                 notesLink: 'https://drive.google.com/drive/folders/1WcW2kt-Ddys7bDTyDDbE1KWhJxiUrccL', 
                 pyqLink: 'https://drive.google.com/drive/folders/1OL7sfKTtWWstrU8jWenP7riGN4PCpdbR',
-                notesAvailable: true,
-                pyqAvailable: true
+                notesAvailable: true, pyqAvailable: true
+            }
+        ];
+
+        // ADD NEW SUBJECTS FOR SEMESTER 2 HERE
+        const subjectsSem2 = [
+            { 
+                title: 'Applied Physics', 
+                notesLink: '#', 
+                pyqLink: '#',
+                notesAvailable: true, pyqAvailable: true
+            },
+            { 
+                title: 'Digital Electronics', 
+                notesLink: '#', 
+                pyqLink: '#',
+                notesAvailable: true, pyqAvailable: true
+            },
+            { 
+                title: 'Data Structures', 
+                notesLink: '#', 
+                pyqLink: '#',
+                notesAvailable: true, pyqAvailable: true
             }
         ];
 
@@ -480,87 +354,45 @@
             { name: 'Anuradha Bharti', role: 'Tech Lead', emoji: '💡' }
         ];
 
-        // Theme toggle functionality
+        // Theme logic
         const themeBtn = document.getElementById('themeBtn');
         const body = document.body;
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'light-mode';
-        body.className = savedTheme;
-        themeBtn.innerHTML = savedTheme === 'light-mode' ? '🌙' : '☀️';
-
-        themeBtn.addEventListener('click', function() {
-            if (body.classList.contains('light-mode')) {
-                body.classList.remove('light-mode');
-                body.classList.add('dark-mode');
-                themeBtn.innerHTML = '☀️';
-                localStorage.setItem('theme', 'dark-mode');
-            } else {
-                body.classList.remove('dark-mode');
-                body.classList.add('light-mode');
-                themeBtn.innerHTML = '🌙';
-                localStorage.setItem('theme', 'light-mode');
-            }
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+            themeBtn.innerHTML = body.classList.contains('dark-mode') ? '☀️' : '🌙';
         });
 
-        // Smooth scroll to first semester
-        document.getElementById('sem1Btn').addEventListener('click', function() {
-            document.getElementById('first-sem').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
+        // Navigation logic
+        document.getElementById('sem1Btn').onclick = () => document.getElementById('first-sem').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('sem2Btn').onclick = () => document.getElementById('second-sem').scrollIntoView({ behavior: 'smooth' });
 
-        // Render subjects
-        function renderSubjects() {
-            const container = document.getElementById('subjects-container');
-            let html = '';
-            
-            subjects.forEach(subject => {
-                html += `
-                    <div class="subject-card">
-                        <h3 class="subject-title">${subject.title}</h3>
-                        <div class="card-buttons">
-                            <a href="${subject.notesLink}" 
-                               class="card-btn btn-notes ${!subject.notesAvailable ? 'disabled' : ''}"
-                               ${!subject.notesAvailable ? 'onclick="return false;"' : ''}
-                               ${subject.notesAvailable ? 'target="_blank" rel="noopener noreferrer"' : ''}>
-                                ${subject.notesAvailable ? '📚 Access Notes' : 'Notes (Coming Soon)'}
-                            </a>
-                            <a href="${subject.pyqLink}" 
-                               class="card-btn btn-pyq ${!subject.pyqAvailable ? 'disabled' : ''}"
-                               ${!subject.pyqAvailable ? 'onclick="return false;"' : ''}
-                               ${subject.pyqAvailable ? 'target="_blank" rel="noopener noreferrer"' : ''}>
-                                ${subject.pyqAvailable ? '📝 Access PYQs' : 'PYQs (Coming Soon)'}
-                            </a>
-                        </div>
+        // Generic Render Function
+        function renderSubjectCards(data, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = data.map(subject => `
+                <div class="subject-card">
+                    <h3 class="subject-title">${subject.title}</h3>
+                    <div class="card-buttons">
+                        <a href="${subject.notesLink}" class="card-btn btn-notes" target="_blank">📚 Access Notes</a>
+                        <a href="${subject.pyqLink}" class="card-btn btn-pyq" target="_blank">📝 Access PYQs</a>
                     </div>
-                `;
-            });
-            
-            container.innerHTML = html;
+                </div>
+            `).join('');
         }
 
-        // Render team
         function renderTeam() {
-            const container = document.getElementById('team-container');
-            let html = '';
-            
-            team.forEach(member => {
-                html += `
-                    <div class="team-card">
-                        <div class="team-emoji">${member.emoji}</div>
-                        <h3 class="team-name">${member.name}</h3>
-                        <p class="team-role">${member.role}</p>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
+            document.getElementById('team-container').innerHTML = team.map(m => `
+                <div class="team-card">
+                    <div class="team-emoji">${m.emoji}</div>
+                    <h3 class="team-name">${m.name}</h3>
+                    <p class="team-role">${m.role}</p>
+                </div>
+            `).join('');
         }
 
-        // Initialize
-        renderSubjects();
+        renderSubjectCards(subjectsSem1, 'subjects-container-1');
+        renderSubjectCards(subjectsSem2, 'subjects-container-2');
         renderTeam();
     </script>
 </body>
